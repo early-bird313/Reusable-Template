@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reunion Campaign Poster Generator | কাস্টম ফ্রেম জেনারেটর</title>
+  <!-- Google Fonts for Bengali & English -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-badge">
+        <span class="icon">✨</span>
+        <span>স্মার্ট পোস্টার জেনারেটর</span>
+      </div>
+      <h1>৪র্থ রিইউনিয়ন ফ্রেম ও পোস্টার মেকার</h1>
+      <p class="subtitle">আপনার নাম ও ছবি দিয়ে মুহূর্তেই তৈরি করে নিন আকর্ষণীয় রিইউনিয়ন ক্যাম্পেইন পোস্টার</p>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="workspace">
+      <!-- Left Controls Panel -->
+      <section class="controls-panel card">
+        <div class="card-header">
+          <h2>🛠️ কাস্টমাইজেশন প্যানেল</h2>
+          <span class="badge">সহজ ৩ ধাপ</span>
+        </div>
+
+        <form id="posterForm" onsubmit="event.preventDefault();">
+          <!-- Step 1: Upload Photo -->
+          <div class="form-group">
+            <label class="section-label">
+              <span class="step-num">১</span> আপনার ছবি আপলোড করুন
+            </label>
+            <input type="file" id="photoInput" accept="image/*" class="sr-only">
+            <div class="upload-box" id="dropZone">
+              <div class="upload-content">
+                <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <p><strong>ছবি সিলেক্ট করুন</strong> অথবা এখানে টেনে এনে ছাড়ুন</p>
+                <span class="file-hint">JPG, PNG, WebP ফরম্যাট সাপোর্টেড</span>
+                <button type="button" id="choosePhotoBtn" class="upload-btn-chip">📁 গ্যালারি / ফাইল থেকে ছবি বাছুন</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: Photo Adjustments (Zoom / Pan / Rotate) -->
+          <div class="form-group" id="adjustGroup">
+            <label class="section-label">
+              <span class="step-num">২</span> ছবির পজিশন ও সাইজ ঠিক করুন
+            </label>
+            <div class="slider-control">
+              <div class="slider-header">
+                <span>🔍 জুম (Zoom)</span>
+                <span id="zoomVal">1.0x</span>
+              </div>
+              <input type="range" id="zoomRange" min="0.5" max="3" step="0.05" value="1">
+            </div>
+
+            <div class="slider-control">
+              <div class="slider-header">
+                <span>🔄 রোটেশন (Rotate)</span>
+                <span id="rotateVal">0°</span>
+              </div>
+              <input type="range" id="rotateRange" min="-180" max="180" step="1" value="0">
+            </div>
+
+            <div class="quick-tools">
+              <button type="button" id="fitCircleBtn" class="btn-tool">📐 সার্কেল সম্পূর্ণ ফিল করুন</button>
+              <button type="button" id="centerPhotoBtn" class="btn-tool">🎯 সেন্টারে আনুন</button>
+            </div>
+
+            <div class="input-wrapper" style="margin-top: 10px;">
+              <label for="circleBgSelect">সার্কেল ব্যাকগ্রাউন্ড (ফাঁকা অংশ পূরণ):</label>
+              <select id="circleBgSelect" class="select-input">
+                <option value="studio" selected>🎨 প্রিমিয়াম স্টুডিও গ্রেডিয়েন্ট (Studio Theme)</option>
+                <option value="blur">✨ স্মার্ট অটো ব্লার ফিল (Ambient Photo Blur)</option>
+                <option value="white">⚪ সফট হোয়াইট (Soft White)</option>
+                <option value="dark">🟣 ডিপ পার্পল থিম (Matching Poster Theme)</option>
+              </select>
+            </div>
+
+            <div class="tip-box">
+              💡 <strong>টিপস:</strong> ডানের প্রিভিউ ফ্রেমের ছবির উপর মাউস বা হাত দিয়ে টেনে (Drag) সঠিক পজিশনে বসাতে পারবেন।
+            </div>
+          </div>
+
+          <!-- Step 3: Name & Details -->
+          <div class="form-group">
+            <label class="section-label">
+              <span class="step-num">৩</span> নাম ও তথ্য দিন
+            </label>
+            
+            <div class="input-wrapper">
+              <label for="nameInput">আপনার পুরো নাম:</label>
+              <input type="text" id="nameInput" placeholder="উদা: মোঃ আরিফুল ইসলাম" value="মিনহাজ আহমেদ পাবেল">
+            </div>
+
+            <div class="input-wrapper">
+              <label for="taglineInput">ব্যাচ / পদবী / বিভাগ (ঐচ্ছিক):</label>
+              <input type="text" id="taglineInput" placeholder="উদা: ব্যাচ-২০১৮ | ডিপার্টমেন্ট অব সিএসই" value="Alumni | Batch 2020">
+            </div>
+
+            <!-- Name Position Selector -->
+            <div class="input-wrapper">
+              <label for="namePosSelect">নামের পজিশন (Position):</label>
+              <select id="namePosSelect" class="select-input">
+                <option value="bottom-right" selected>ডানে নিচে (Bottom Right)</option>
+                <option value="bottom-center">মাঝখানে নিচে (Bottom Center)</option>
+                <option value="none">নাম দেখানোর প্রয়োজন নেই (Hide Name)</option>
+              </select>
+            </div>
+
+            <!-- Optional Name Badge Styling -->
+            <div class="badge-toggle">
+              <label class="checkbox-label">
+                <input type="checkbox" id="showBadgeBg" checked>
+                <span>নামের নিচে প্রিমিয়াম গ্লাস প্লেট ব্যাকগ্রাউন্ড রাখুন</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="actions">
+            <button type="button" id="downloadBtn" class="btn btn-primary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="20" height="20">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              <span>হাই-কোয়ালিটি পোস্টার ডাউনলোড করুন</span>
+            </button>
+            <a href="assets/4th_reunion_badge.png" download="4th_reunion_transparent.png" class="btn btn-badge-download">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="18" height="18">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              <span>৪র্থ রিইউনিয়ন লোগো (স্বচ্ছ PNG) ডাউনলোড</span>
+            </a>
+            <button type="button" id="resetBtn" class="btn btn-secondary">রিসেট করুন</button>
+          </div>
+
+          <!-- Advanced: Frame Swapping -->
+          <div class="advanced-section">
+            <details>
+              <summary>⚙️ অ্যাডভান্সড: ফ্রেম পরিবর্তন করুন</summary>
+              <div class="advanced-content">
+                <p>ভবিষ্যতে কোনো নতুন ডিজাইনের Transparent PNG ফ্রেম থাকলে এখান থেকে আপলোড করে ব্যবহার করতে পারবেন:</p>
+                <input type="file" id="frameInput" accept="image/png" class="file-input-small">
+              </div>
+            </details>
+          </div>
+        </form>
+      </section>
+
+      <!-- Right Preview Panel -->
+      <section class="preview-panel card">
+        <div class="card-header">
+          <h2>👁️ লাইভ প্রিভিউ (Live Preview)</h2>
+          <span class="resolution-tag">১০২৪ × ১০২৪ HD</span>
+        </div>
+
+        <div class="canvas-wrapper">
+          <canvas id="posterCanvas" width="1024" height="1024"></canvas>
+          <div class="drag-hint">
+            <span>👆 ছবির উপর ক্লিক করে ড্র্যাগ করে পজিশন ঠিক করুন</span>
+          </div>
+        </div>
+
+        <div class="preview-footer">
+          <div class="status-indicator">
+            <span class="status-dot"></span>
+            <span id="statusText">রেডি! আপনার ছবি আপলোড করুন</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>৪র্থ রিইউনিয়ন ক্যাম্পেইন ফ্রেম সিস্টেম • সম্পূর্ণ স্বয়ংক্রিয় ও ক্লায়েন্ট-সাইড প্রসেসিং</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
